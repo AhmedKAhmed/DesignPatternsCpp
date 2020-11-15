@@ -55,7 +55,7 @@ class stateOne: public GenralState, public state{
             System->setSate(0);
         }
         void stateAction(){
-            printf("the state ID = %d \n",Id);
+            printf("the state ID is %d \n",Id);
         }    
 };
 
