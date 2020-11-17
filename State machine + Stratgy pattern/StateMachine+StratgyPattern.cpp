@@ -23,14 +23,23 @@ class StateLogic:public StateImplementation{
             printf("this state is %d \n",id);
         }
 };
+
+class StateLogicII:public StateImplementation{
+    public:
+        void stateAct(int id){
+            printf("++++++++++++++++++++++++++\n");
+            printf("the Id of this state is %d\n",id);
+        }
+};
+
 class GenralState{
     protected:
         int Id;
         Machine *System;
-        StateLogic *stateAction;        
+        StateImplementation *stateAction;        
     public:
         stateTransition *Trans;
-        GenralState(int stateId, StateLogic *stateaction, stateTransition *tran){
+        GenralState(int stateId, StateImplementation *stateaction, stateTransition *tran){
             Id = stateId;
             stateAction = stateaction;
             Trans = tran;            ;
@@ -91,10 +100,11 @@ class stateTrantwo:public stateTransition{
 
 int main(void){
     StateLogic printLogic;
+    StateLogicII printLogicII;
     stateTranOne T1;
     stateTrantwo T2;
     GenralState S1(1, &printLogic, &T1);
-    GenralState S2(2, &printLogic, &T2);
+    GenralState S2(2, &printLogicII, &T2);
     stateMachineTest System_example(&S1, &S1, &S2);
     S1.setSystem(&System_example);
     S2.setSystem(&System_example);
